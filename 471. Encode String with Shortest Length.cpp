@@ -35,13 +35,27 @@
 // Input: "aabcaabcd"
 // Output: "2[aabc]d"
 // Explanation: "aabc" occurs twice, so one answer can be "2[aabc]d".
+
+// Example 5:
+
+// Input: "abbbabbbcabbbabbbc"
+// Output: "2[2[abbb]c]"
+// Explanation: "abbbabbbc" occurs twice, but "abbbabbbc" can also be encoded to "2[abbb]c", so one answer can be "2[2[abbb]c]".
+
+// ===================================================================================================================
  
+//  Analysis:
 
-Example 5:
+//  dp[i][j] means shortest string formed from index i to index j.
+// first initialize dp[i][j] to s.substr(i, j - i + 1);
+//         for (int len = 1; len <= n; ++len) {	for different potential repetition length
+//             for (int i = 0; i + len <= n; ++i) {
+// first use a middle index to iterate from i to i + len - 1 to check if dp[i][i  len - 1] could collapse into shorter string
+// then int j = i + len to check repetition
+// while (j + len <= n && s.compare(i, len, s, j, len) == 0)
 
-Input: "abbbabbbcabbbabbbc"
-Output: "2[2[abbb]c]"
-Explanation: "abbbabbbc" occurs twice, but "abbbabbbc" can also be encoded to "2[abbb]c", so one answer can be "2[2[abbb]c]".
+
+
 
 class Solution {
 public:
