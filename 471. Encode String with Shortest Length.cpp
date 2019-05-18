@@ -89,3 +89,43 @@ public:
         return dp[0][n - 1];
     }
 };
+
+//dfs with mem:
+// class Solution {
+//     int n;
+//     string em = "";
+// public:
+//     string encode(string s) {
+//         n = s.length();
+//         vector<vector<string>> mem(n, vector<string>(n, ""));
+//         return helper(s, mem, 0, n - 1);
+//     }
+
+//     const string& helper(const string& s, vector<vector<string>>& mem, int i, int j) {
+//         if (i > j) return em;
+//         if (!mem[i][j].empty()) return mem[i][j];     
+//         string cur = s.substr(i, j - i + 1);
+//         if (i == j) return mem[i][j] = cur;
+//         for (int mid = i; mid < j; ++mid) {
+//             const string& s1 = helper(s, mem, i, mid), & s2 = helper(s, mem, mid + 1, j);
+//             if (s1.length() + s2.length() < cur.length()) {
+//                 cur = s1 + s2;
+//             }
+//         }
+//         for (int len = 1; i + len - 1 < j; ++len) {
+//             int k = i + len;
+//             int count = 1;
+//             const string& s1 = helper(s, mem, i, i + len - 1);
+//             while (k + len - 1 <= j && s.compare(i, len, s, k, len) == 0) {
+//                 ++count;
+//                 k += len;
+//                 const string& s2 = helper(s, mem, k, j);
+//                 if (s1.length() + to_string(count).length() + 2 + s2.length() < cur.length()) {
+//                     cur = to_string(count) + '[' + s1 + ']' + s2;
+//                 }
+//             }
+//         }
+//         mem[i][j] = cur;
+//         return mem[i][j];
+//     }
+// };
